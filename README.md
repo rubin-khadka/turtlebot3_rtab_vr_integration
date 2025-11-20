@@ -2,4 +2,4 @@
 
 ## Video Demo
 
-![Project Demo Video](./videos/rtab_turtlebot_demo.mp4)
+![Project Demo Video](./Videos/rtab_turtlebot_demo.mp4)
