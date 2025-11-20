@@ -1,2 +1,20 @@
 # Ignore ROS-TCP-Endpoint completely
 ROS-TCP-Endpoint/
+
+# Ignore all other turtlebot model
+# Already available online
+turtlebot3_gazebo/CHANGELOG.rst
+turtlebot3_gazebo/CMakeLists.txt
+turtlebot3_gazebo/include/
+turtlebot3_gazebo/launch/
+turtlebot3_gazebo/models/
+turtlebot3_gazebo/package.xml
+turtlebot3_gazebo/params/
+turtlebot3_gazebo/rviz/
+turtlebot3_gazebo/src/
+turtlebot3_gazebo/urdf/common_properties.urdf
+turtlebot3_gazebo/urdf/turtlebot3_burger.urdf
+turtlebot3_gazebo/urdf/turtlebot3_burger_cam.urdf
+turtlebot3_gazebo/urdf/turtlebot3_waffle_pi.urdf
+turtlebot3_gazebo/worlds/
+
