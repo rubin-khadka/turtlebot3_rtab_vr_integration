@@ -29,7 +29,7 @@ def generate_launch_description():
                 'depth_topic': '/camera/depth_image',
                 'camera_info_topic': '/camera/camera_info',
                 'scan_topic': '/scan',
-                'odom_topic': '/odom',
+                'odom_topic': '/odom',  # Use raw Gazebo odometry
 
                 'subscribe_odom_info': 'false',
                 'visual_odometry': 'false', 
@@ -42,28 +42,21 @@ def generate_launch_description():
                 'approx_rgbd_sync': 'true',
                 'approx_sync_max_interval': '0.05',
                 'compressed': '30', 
-
-                'cloud_output_voxel': 'false',       
-                'cloud_output_voxel_size': '0.01',   
-                'cloud_decimation': '1',             
-                'cloud_max_points': '0',              
-                'cloud_frustum_culling': 'false',     
-                'cloud_update_delay': '0.1',         
                 
-                # DENSE POINT CLOUD PARAMETERS
+                # IMPROVED PARAMETERS FOR BETTER MAP QUALITY
                 'args': '-d \
                     --Grid/3D true \
                     --Grid/FromDepth true \
-                    --Grid/CellSize 0.02 \
-                    --Grid/RangeMax 6.0 \
-                    --cloud_output_voxel false \
-                    --cloud_voxel_size 0.01 \
-                    --Kp/MaxFeatures 2000 \
-                    --Vis/MaxFeatures 2000 \
-                    --Vis/MinInliers 10 \
-                    --Mem/STMSize 30 \
-                    --RGBD/LinearUpdate 0.05 \
-                    --RGBD/AngularUpdate 0.1 \
+                    --Grid/CellSize 0.05 \
+                    --Grid/RangeMax 4.0 \
+                    --cloud_output_voxel true \
+                    --cloud_voxel_size 0.05 \
+                    --Kp/MaxFeatures 1000 \
+                    --Vis/MaxFeatures 1000 \
+                    --Vis/MinInliers 15 \
+                    --Mem/STMSize 100 \
+                    --RGBD/LinearUpdate 0.1 \
+                    --RGBD/AngularUpdate 0.2 \
                     --Reg/Force3DoF true \
                     --Mem/ImageCompression true \
                     --Mem/CompressionParallelized true',
