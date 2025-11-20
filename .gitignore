@@ -7,14 +7,19 @@ turtlebot3_gazebo/CHANGELOG.rst
 turtlebot3_gazebo/CMakeLists.txt
 turtlebot3_gazebo/include/
 turtlebot3_gazebo/launch/
-turtlebot3_gazebo/models/
+turtlebot3_gazebo/models/turtlebot3_burger
+turtlebot3_gazebo/models/turtlebot3_burger_cam
+turtlebot3_gazebo/models/turtlebot3_common
+turtlebot3_gazebo/models/turtlebot3_dqn_world
+turtlebot3_gazebo/models/turtlebot3_house
+turtlebot3_gazebo/models/turtlebot3_waffle_pi
+turtlebot3_gazebo/models/turtlebot3_world
 turtlebot3_gazebo/package.xml
-turtlebot3_gazebo/params/
+turtlebot3_gazebo/params/turtlebot3_burger_bridge.yaml
+turtlebot3_gazebo/params/turtlebot3_burger_cam_bridge.yaml
+turtlebot3_gazebo/params/turtlebot3_waffle_pi_bridge.yaml
 turtlebot3_gazebo/rviz/
 turtlebot3_gazebo/src/
-turtlebot3_gazebo/urdf/common_properties.urdf
-turtlebot3_gazebo/urdf/turtlebot3_burger.urdf
-turtlebot3_gazebo/urdf/turtlebot3_burger_cam.urdf
-turtlebot3_gazebo/urdf/turtlebot3_waffle_pi.urdf
+turtlebot3_gazebo/urdf/
 turtlebot3_gazebo/worlds/
 
