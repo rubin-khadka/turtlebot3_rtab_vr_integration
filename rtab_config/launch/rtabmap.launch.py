@@ -1,6 +1,6 @@
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
-from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
+from launch.substitutions import PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -43,30 +43,40 @@ def generate_launch_description():
                 'approx_sync_max_interval': '0.05',
                 'compressed': '30', 
 
-                'cloud_output_voxel': 'false',       
-                'cloud_output_voxel_size': '0.01',   
-                'cloud_decimation': '1',             
-                'cloud_max_points': '0',              
-                'cloud_frustum_culling': 'false',     
-                'cloud_update_delay': '0.1',         
+                # Mesh generation (what you need for Unity)
+                'mesh_output_voxel': 'true',
+                'mesh_output_voxel_size': '0.02',   
+                'mesh_output_textured': 'true',        
+                'mesh_output_compressed': 'true',
+                'mesh_output_as_cloud': 'false',
+                'mesh_visibility': 'true',            
+                'mesh_triangle_compression': 'true',  
                 
-                # DENSE POINT CLOUD PARAMETERS
+                # DENSE POINT CLOUD PARAMETERS - REMOVED PROBLEMATIC PARAMETER
                 'args': '-d \
                     --Grid/3D true \
-                    --Grid/FromDepth true \
-                    --Grid/CellSize 0.02 \
-                    --Grid/RangeMax 6.0 \
-                    --cloud_output_voxel false \
+                    --Grid/Sensor true \
+                    --Grid/CellSize 0.01 \
+                    --Grid/RangeMax 5.0 \
+                    --cloud_output_voxel true \
                     --cloud_voxel_size 0.01 \
-                    --Kp/MaxFeatures 2000 \
-                    --Vis/MaxFeatures 2000 \
-                    --Vis/MinInliers 10 \
-                    --Mem/STMSize 30 \
-                    --RGBD/LinearUpdate 0.05 \
-                    --RGBD/AngularUpdate 0.1 \
+                    --cloud_filter_radius 0.1 \
+                    --cloud_filter_min_neighbors 3 \
+                    --Kp/MaxFeatures 4000 \
+                    --Vis/MaxFeatures 4000 \
+                    --Vis/MinInliers 15 \
+                    --Mem/STMSize 50 \
+                    --RGBD/LinearUpdate 0.03 \
+                    --RGBD/AngularUpdate 0.05 \
                     --Reg/Force3DoF true \
                     --Mem/ImageCompression true \
-                    --Mem/CompressionParallelized true',
+                    --Mem/CompressionParallelized true \
+                    --Mem/UseOdomFeatures false \
+                    --GFTT/QualityLevel 0.01 \
+                    --RGBD/ProximityMaxGraphDepth 2 \
+                    --RGBD/NeighborLinkRefining true \
+                    --RGBD/LoopThr 0.11 \
+                    --RGBD/ProximityPathMaxNeighbors 2',
                 
                 'rviz': 'true'
             }.items()

@@ -391,8 +391,8 @@
           <camera_info_topic>camera/camera_info</camera_info_topic>
           <horizontal_fov>1.02974</horizontal_fov>
           <image>
-            <width>640</width>
-            <height>480</height>
+            <width>1280</width>
+            <height>720</height>
             <format>R8G8B8</format>
           </image>
           <clip>
