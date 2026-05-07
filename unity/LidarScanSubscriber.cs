@@ -4,7 +4,7 @@ using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using RosMessageTypes.Sensor;
 using TMPro;
 
-public class LaserScanSubscriber : MonoBehaviour
+public class LidarScanSubscriber : MonoBehaviour
 {
     [Header("ROS Settings")]
     public string scanTopic = "/scan";
