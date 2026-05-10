@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Robotics.ROSTCPConnector;
-using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 using RosMessageTypes.Nav;
 
 public class RobotMinimap : MonoBehaviour
@@ -10,67 +9,87 @@ public class RobotMinimap : MonoBehaviour
     public RawImage minimapImage;
     public RectTransform robotDot;
     
-    [Header("Map Metadata")]
+    [Header("Map Metadata (from YAML)")]
     public float resolution = 0.03f;
-    public float originX = -3.45481f;
-    public float originY = -4.27063f;
+    public float originX = -3.45481f;  // ROS world X of bottom-left map corner
+    public float originY = -4.27063f;  // ROS world Y of bottom-left map corner
     
-    [Header("Robot")]
-    public Transform robot;
+    [Header("VR Options")]
+    public Transform vrCamera;
+    public bool faceCamera = true;
     
     private ROSConnection ros;
-    private Vector3 robotPosition;
-    private Quaternion robotRotation;
+    private Vector2 robotPos2D;  // Only X/Y for 2D map
+    private float robotYaw;
     private bool hasData = false;
-    private int mapWidth;
-    private int mapHeight;
+    private int mapWidth, mapHeight;
+    
+    // Your intentional canvas size
+    private const float CANVAS_SIZE = 700f;
     
     void Start()
     {
-        if (minimapImage != null && minimapImage.texture != null)
+        if (minimapImage?.texture != null)
         {
             mapWidth = minimapImage.texture.width;
             mapHeight = minimapImage.texture.height;
-            Debug.Log($"Map size: {mapWidth} x {mapHeight}");
+            Debug.Log($"Map: {mapWidth}x{mapHeight}px | Canvas: {CANVAS_SIZE}x{CANVAS_SIZE}");
         }
-        
-        RectTransform rect = minimapImage.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(700, 700);
+        else
+        {
+            Debug.LogError("Minimap texture not assigned!");
+            return;
+        }
         
         ros = ROSConnection.GetOrCreateInstance();
         ros.Subscribe<OdometryMsg>("/odom", OnOdometryReceived);
     }
     
-    void OnOdometryReceived(OdometryMsg msg)
-    {
-        robotPosition = msg.pose.pose.position.From<FLU>();
-        robotRotation = msg.pose.pose.orientation.From<FLU>();
-        hasData = true;
-    }
-    
     void Update()
     {
-        if (hasData && robotDot != null)
+        if (faceCamera && vrCamera != null && minimapImage != null)
         {
-            UpdateMinimap();
+            minimapImage.transform.LookAt(vrCamera.position);
+            minimapImage.transform.rotation = Quaternion.Euler(0, minimapImage.transform.eulerAngles.y, 0);
         }
+        
+        if (hasData && robotDot != null)
+            UpdateMinimap();
+    }
+    
+    void OnOdometryReceived(OdometryMsg msg)
+    {
+        // RAW world-frame position (no FLU conversion)
+        robotPos2D = new Vector2(
+            (float)msg.pose.pose.position.x,
+            (float)msg.pose.pose.position.y
+        );
+        
+        // Extract yaw (rotation around Z-axis in ROS)
+        Quaternion q = new Quaternion(
+            (float)msg.pose.pose.orientation.x,
+            (float)msg.pose.pose.orientation.y,
+            (float)msg.pose.pose.orientation.z,
+            (float)msg.pose.pose.orientation.w
+        );
+        robotYaw = q.eulerAngles.z;
+        
+        hasData = true;
     }
     
     void UpdateMinimap()
     {
-        // POSITION - Swap X and Z
-        float pixelX = (robotPosition.z - originX) / resolution;
-        float pixelY = (robotPosition.x - originY) / resolution;
+        float pixelX = (robotPos2D.x - originX) / resolution;
+        float pixelY = (robotPos2D.y - originY) / resolution;
         
-        float uiX = (pixelX / mapWidth - 0.5f) * 700f;
-        float uiY = (pixelY / mapHeight - 0.5f) * 700f;
+        float uiX = (pixelX / mapWidth - 0.5f) * CANVAS_SIZE;
+        float uiY = (pixelY / mapHeight - 0.5f) * CANVAS_SIZE;
+        
+        uiX = Mathf.Clamp(uiX, -CANVAS_SIZE * 0.5f, CANVAS_SIZE * 0.5f);
+        uiY = Mathf.Clamp(uiY, -CANVAS_SIZE * 0.5f, CANVAS_SIZE * 0.5f);
         
         robotDot.anchoredPosition = new Vector2(uiX, uiY);
         
-        // ROTATION - Add 180° to flip the arrow direction
-        float angle = robotRotation.eulerAngles.y;
-        float uiAngle = angle + 180f;  // This flips the arrow to point correctly
-        
-        robotDot.rotation = Quaternion.Euler(0, 0, uiAngle);
+        robotDot.localRotation = Quaternion.Euler(0f, 0f, -robotYaw);
     }
 }
