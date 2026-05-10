@@ -9,9 +9,9 @@ public class OdomSubscriber : MonoBehaviour
     public GameObject robot;
     
     [Header("Smoothing Settings")]
-    [SerializeField] private float smoothPosition = 0.3f;  // Lower = smoother but slower
+    [SerializeField] private float smoothPosition = 0.3f; 
     [SerializeField] private float smoothRotation = 0.3f;
-    [SerializeField] private float positionThreshold = 0.001f;  // Only move if change > this
+    [SerializeField] private float positionThreshold = 0.001f;  
     
     [Header("Debug")]
     [SerializeField] private bool showDebugLogs = true;
@@ -70,7 +70,7 @@ public class OdomSubscriber : MonoBehaviour
         Vector3 newPosition = position - initialPosition;
         Quaternion newRotation = orientation * Quaternion.Inverse(initialOrientation);
         
-        // Only update if change is significant (reduces micro-movements)
+        // Only update if change is significant
         float positionDelta = Vector3.Distance(newPosition, lastReceivedPosition);
         float rotationDelta = Quaternion.Angle(newRotation, lastReceivedRotation);
         

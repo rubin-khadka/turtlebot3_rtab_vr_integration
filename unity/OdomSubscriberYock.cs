@@ -82,7 +82,7 @@ public class OdomSubscriberYock : MonoBehaviour
             newPosition.y = fixedYHeight;
         }
         
-        // LOCK X and Z ROTATION - prevent tilting (keep robot upright)
+        // LOCK X and Z ROTATION - prevent tilting
         Vector3 eulerRotation = newRotation.eulerAngles;
         if (lockXRotation) eulerRotation.x = 0;
         if (lockZRotation) eulerRotation.z = 0;

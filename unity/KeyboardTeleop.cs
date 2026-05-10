@@ -26,7 +26,6 @@ public class KeyboardTeleop : MonoBehaviour
         // Get or create ROS connection
         ros = ROSConnection.GetOrCreateInstance();
         
-        // Register as a publisher (this replaces the old Send method)
         ros.RegisterPublisher<TwistMsg>(cmdVelTopic);
         
         Debug.Log($"KeyboardTeleop initialized. Publishing to {cmdVelTopic}");
@@ -54,7 +53,7 @@ public class KeyboardTeleop : MonoBehaviour
         twist.linear.x = linearSpeed;
         twist.angular.z = angularSpeed;
         
-        // Publish using the new API (Publish instead of Send)
+        // Publish using the new API 
         ros.Publish(cmdVelTopic, twist);
         
         // Debug output (only when moving)
@@ -64,7 +63,6 @@ public class KeyboardTeleop : MonoBehaviour
         }
     }
     
-    // Optional: Stop robot when script is disabled
     void OnDisable()
     {
         if (ros != null)
