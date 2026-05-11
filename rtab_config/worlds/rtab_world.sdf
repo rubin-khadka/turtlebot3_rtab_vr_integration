@@ -70,7 +70,7 @@
       <self_collide>false</self_collide>
     </model>
     <include>
-      <uri>file:///home/shahin/ros_ws/src/rtab_config/models/rtab_map</uri>
+      <uri>file:///home/rubin/rtab_vr_ws/src/rtab_config/models/rtab_map</uri>
       <name>rtab_map</name>
       <pose>-5 0 0 0 0 0</pose>
     </include>
