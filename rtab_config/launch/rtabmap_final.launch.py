@@ -33,10 +33,10 @@ def generate_launch_description():
                 'scan_topic': '/scan',
                 'odom_topic': '/odom',
 
-                # Odometry settings - TUNED FOR STABILITY
+                # Odometry - Use ONLY wheel odometry
                 'subscribe_odom_info': 'true',
-                'visual_odometry': 'false',  # DISABLED - causes jumps during turns
-                'icp_odometry': 'false',      # ENABLED - more stable for turns
+                'visual_odometry': 'false',
+                'icp_odometry': 'false',
                 'odom_uses_imu': 'false',
 
                 # RGB-D settings
@@ -45,20 +45,19 @@ def generate_launch_description():
                 'rgbd_sync': 'true',
                 'approx_sync': 'true',
                 'approx_rgbd_sync': 'true',
-                'approx_sync_max_interval': '0.1',  # Increased for stability
-                'queue_size': '20',  # Larger queue
+                'approx_sync_max_interval': '0.1',
+                'queue_size': '20',
                 'compressed': 'false',
 
                 # Mesh generation
                 'mesh_output_voxel': 'true',
-                'mesh_output_voxel_size': '0.03',  # Larger voxel for performance
+                'mesh_output_voxel_size': '0.03',
                 'mesh_output_textured': 'true',
                 'mesh_output_compressed': 'true',
                 'mesh_output_as_cloud': 'false',
                 'mesh_visibility': 'true',
                 'mesh_triangle_compression': 'true',
 
-                # OPTIMIZED PARAMETERS - NO JUMPING
                 'args': '-d \
                     --Grid/3D true \
                     --Grid/Sensor true \
@@ -71,47 +70,39 @@ def generate_launch_description():
                     \
                     --Kp/MaxFeatures -1 \
                     --Vis/MaxFeatures 1500 \
-                    --Vis/MinInliers 12 \
-                    --Vis/CorType 1 \
-                    --Vis/FeatureType 1 \
-                    --Vis/EstimationType 1 \
                     \
                     --Mem/STMSize 30 \
                     --Mem/ImageCompression true \
-                    --Mem/CompressionParallelized true \
                     --Mem/UseOdomFeatures true \
-                    --Mem/RehearsalSimilarity 0.5 \
-                    --Mem/LocalLoopDetection false \
                     \
-                    --RGBD/LinearUpdate 0.25 \
-                    --RGBD/AngularUpdate 0.25 \
+                    --RGBD/LinearUpdate 0.1 \
+                    --RGBD/AngularUpdate 0.1 \
                     --RGBD/TemporalUpdate 1.0 \
-                    --RGBD/ProximityMaxGraphDepth 1 \
-                    --RGBD/ProximityPathMaxNeighbors 1 \
-                    --RGBD/NeighborLinkRefining false \
-                    --RGBD/LoopThr 0.35 \
-                    --RGBD/LoopMaxGraphDepth 1 \
-                    --RGBD/LoopMinInliers 30 \
-                    \
-                    --Icp/CorrespondenceRatio 0.35 \
-                    --Icp/MaxCorrespondenceDistance 0.15 \
-                    --Icp/MaxTranslation 0.3 \
-                    --Icp/MaxRotation 0.3 \
-                    --Icp/VoxelSize 0.03 \
-                    --Icp/PointToPlane true \
                     \
                     --Reg/Strategy 0 \
                     --Reg/Force2D true \
-                    --Reg/Force3DoF true \
-                    --Reg/ScanReg true \
-                    --Reg/ScanRegICP true \
                     \
-                    --Rtabmap/PublishRAMUsage false \
-                    --Rtabmap/DetectionRate 1 \
+                    --Rtabmap/DetectionRate 2 \
                     --Rtabmap/CreateIntermediateNodes true \
-                    --Rtabmap/TimeOut 2.0 \
                     \
-                    --GFTT/QualityLevel 0.01',
+                    --RGBD/LoopThr 1.0 \
+                    --RGBD/LoopMaxGraphDepth 0 \
+                    --RGBD/LoopMinInliers 1000 \
+                    --RGBD/ProximityByTime false \
+                    --RGBD/ProximityMaxGraphDepth 0 \
+                    --RGBD/ProximityPathMaxNeighbors 0 \
+                    --RGBD/NeighborLinkRefining false \
+                    --RGBD/StarLoopClosure false \
+                    --RGBD/StarLoopMinInliers 1000 \
+                    --Mem/LocalLoopDetection false \
+                    --Mem/RehearsalSimilarity 0.0 \
+                    --Mem/BadSignaturesIgnored false \
+                    --Mem/EphemeralMemory false \
+                    --Vis/EstimationType 0 \
+                    --Vis/MinInliers 1000 \
+                    --Vis/InlierDistance 100 \
+                    --Vis/MaxFeatures 500 \
+                    --Kp/DetectorStrategy 0',
                 
                 'rviz': 'true'
             }.items()
