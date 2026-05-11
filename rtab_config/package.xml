@@ -3,7 +3,7 @@
 <package format="3">
   <name>rtab_config</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>RTAB Map configuration and map creation</description>
   <maintainer email="rubin.robotic@gmail.com">rubin</maintainer>
   <license>TODO: License declaration</license>
 
