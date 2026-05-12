@@ -41,6 +41,13 @@ Robot spawned in Gazebo with the static 3D mesh map loaded:
 
 ## Unity (Windows)
 
+### VR Teleoperation Demo — Headset Perspective
+
+*What the operator sees through the Meta Quest headset during robot control*
+
+https://github.com/user-attachments/assets/e6e9bcdb-ee10-4410-992b-40227894b76e
+
+
 ### Simulation connecting to ROS2 (No Information)
 
 <img width="867" height="902" alt="Unity_connecting" src="https://github.com/user-attachments/assets/550136cb-b740-4625-8ff8-6a64bd26e151" />
