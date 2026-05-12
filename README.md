@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project demonstrates **virtual reality teleoperation** of a mobile robot. The VR headset controller sends commands through Unity to ROS2, which drives the robot in Gazebo. Odometry data is streamed back to Unity for synchronized contorl and visualization.
+This project demonstrates **virtual reality teleoperation** of a mobile robot. The VR headset controller sends commands through Unity to ROS2, which drives the robot in Gazebo. Odometry data is streamed back to Unity for synchronized control and visualization.
 
 **Tech Stack:**
 | Component | Platform | Role |
@@ -21,11 +21,11 @@ This project demonstrates **virtual reality teleoperation** of a mobile robot. T
 ### Map Building Demo
 https://github.com/user-attachments/assets/681ad4d4-4473-4bb8-8107-3008278fa6f9
 
-### Static 3D map Point Cloud
+### Static 3D map (Point Cloud)
 
 <img width="1407" height="765" alt="static_pc" src="https://github.com/user-attachments/assets/12a71609-5810-451a-922b-f99ece1ac7fb" />
 
-### Static 3D map Mesh
+### Static 3D map (Mesh)
 
 <img width="1164" height="725" alt="static_map" src="https://github.com/user-attachments/assets/86e5ac00-91c6-4f59-958b-9c8ee684271f" />
 
