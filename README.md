@@ -23,6 +23,11 @@ https://github.com/user-attachments/assets/681ad4d4-4473-4bb8-8107-3008278fa6f9
 
 ## Unity (Windows)
 
-### Simulation connecting to ROS (No Information)
+### Simulation connecting to ROS2 (No Information)
 
 <img width="867" height="902" alt="Unity_connecting" src="https://github.com/user-attachments/assets/550136cb-b740-4625-8ff8-6a64bd26e151" />
+
+### Simulation Connected to ROS2 (Active)
+
+<img width="860" height="897" alt="Unity_connected_active" src="https://github.com/user-attachments/assets/6e705623-9458-485f-b435-0c0f2eabf4a2" />
+
