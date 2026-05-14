@@ -9,12 +9,12 @@ This project demonstrates **virtual reality teleoperation** of a mobile robot. T
 **Tech Stack:**
 | Component | Platform | Role |
 |-----------|----------|------|
-| Unity | Windows | VR rendering, visualization, camera switching |
-| ROS2 Jazzy + Gazebo | Ubuntu 24.04 | Physics simulation, robot control, odometry |
-| ROS-TCP-Connector | Cross-platform | Bi-directional communication between Unity and ROS2 |
-| RTAB-Map | Ubuntu | Static 3D map generation |
-| VR Headset | Meta Quest | Head-mounted display for VR visualization |
-| VR Controllers | Meta Quest | Input devices for teleoperation commands |
+| [Unity 2022 LTS](https://unity.com/releases/2022-lts) | Windows | VR rendering, visualization, camera switching |
+| [ROS2 Jazzy + Gazebo](https://docs.ros.org/en/jazzy/index.html) | Ubuntu 24.04 | Physics simulation, robot control, odometry |
+| [ROS-TCP-Connector](https://github.com/Unity-Technologies/ROS-TCP-Connector) | Cross-platform | Bi-directional communication between Unity and ROS2 |
+| [RTAB-Map](https://introlab.github.io/rtabmap/) | Ubuntu | Static 3D map generation |
+| [VR Headset](https://www.meta.com/it/en/quest/) | Meta Quest | Head-mounted display for VR visualization |
+| [VR Controllers](https://www.meta.com/it/en/quest/) | Meta Quest | Input devices for teleoperation commands |
 
 ## ROS2 Jazzy (Ubuntu 24.04)
 
