@@ -4,8 +4,8 @@ using RosMessageTypes.Geometry;
 
 public class VRControllerTeleop : MonoBehaviour
 {
-    public float maxLinearSpeed = 0.5f;
-    public float maxAngularSpeed = 0.5f;
+    public float maxLinearSpeed = 0.2f;
+    public float maxAngularSpeed = 0.2f;
     public string cmdVelTopic = "/cmd_vel";
     public bool useKeyboardFallback = true;
     
@@ -16,7 +16,7 @@ public class VRControllerTeleop : MonoBehaviour
         ros = ROSConnection.GetOrCreateInstance();
         ros.RegisterPublisher<TwistMsg>(cmdVelTopic);
         Debug.Log("VR Controller Teleop Started");
-        Debug.Log("Controls: Y=Forward, H=Backward, G=Turn Left, J=Turn Right");
+        Debug.Log("Controls: W=Forward, S=Backward, A=Turn Left, S=Turn Right");
     }
     
     void Update()
@@ -31,12 +31,12 @@ public class VRControllerTeleop : MonoBehaviour
             float horizontal = 0f;
             
             // Forward/Backward
-            if (Input.GetKey(KeyCode.Y)) vertical = 1f;
-            if (Input.GetKey(KeyCode.H)) vertical = -1f;
+            if (Input.GetKey(KeyCode.W)) vertical = 1f;
+            if (Input.GetKey(KeyCode.s)) vertical = -1f;
             
             // Turn Left/Right
-            if (Input.GetKey(KeyCode.G)) horizontal = 1f; 
-            if (Input.GetKey(KeyCode.J)) horizontal = -1f; 
+            if (Input.GetKey(KeyCode.A)) horizontal = 1f; 
+            if (Input.GetKey(KeyCode.D)) horizontal = -1f; 
             
             moveInput = new Vector2(horizontal, vertical);
             
